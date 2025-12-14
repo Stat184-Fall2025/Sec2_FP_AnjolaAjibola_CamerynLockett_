@@ -341,3 +341,23 @@ p_cost_adv <- latest_ev_with_costs %>%
 p_cost_adv
 ```
 The table summarizes the states where EVs are cheapest relative to gas based on cost per mile. It shows the top states where EV charging is consistently lower than gas on a per-mile basis. Washington has the largest advantage with a gas cost of about $0.16 per mile while EV charging costs about $0.06 per mile with a saving of 10 cents per mile. The scatterplot shows the overall relationship across states between gas cost per mile and EV cost per mile. It shows EV is generally cheaper per mile than gas in most states. The bar chart shows the top 20 states ranked by EV cost advantage. These visuals together show that EV charging is cheaper per mile than gas in most states, however the amount of savings varies by state.
+
+```{r gascost_EVsharePlot, fig.cap="Figure 5. Gasoline Cost vs EV Share by State.", fig.alt="Scatter plot showing the relationship between gas prices and EV share of total vehicles by state with a downward-sloping trend line.", echo=FALSE}
+
+g_scatter <- latest_ev_with_costs %>%
+  filter(
+    !is.na(gas_fuel_equiv_cost),
+    !is.na(ev_pct)
+  ) %>%
+  ggplot(aes(x = gas_fuel_equiv_cost, y = ev_pct)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    title = "Gasoline Cost vs EV Share by State",
+    subtitle = "Latest Available Month",
+    x = "Average Retail Gas Price ($ per gallon)",
+    y = "EV Share of Total Vehicles (%)"
+  ) +
+  theme_minimal()
+g_scatter
+```
