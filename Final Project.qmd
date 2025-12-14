@@ -361,3 +361,5 @@ g_scatter <- latest_ev_with_costs %>%
   theme_minimal()
 g_scatter
 ```
+
+The plot showcases the relationship between average retail gasoline prices and EV share by state for the most recent month. There is variability across states leading to no clear positive relationship between gasoline prices and EV adoption. The trend line indicates a weak, negative association implying that gasoline prices alone do not correspond to or cause higher EV shares.
