@@ -363,3 +363,24 @@ g_scatter
 ```
 
 The plot showcases the relationship between average retail gasoline prices and EV share by state for the most recent month. There is variability across states leading to no clear positive relationship between gasoline prices and EV adoption. The trend line indicates a weak, negative association implying that gasoline prices alone do not correspond to or cause higher EV shares.
+
+```{r EVcostadvantage_EVsharePlot, fig.cap="Figure 6. EV Cost Advantage vs EV Share by State.", fig.alt="Scatter plot of EV cost advantage versus EV share by state with a negative trend line.", echo=FALSE}
+advantage_scatter <- latest_ev_with_costs %>%
+  filter(
+    !is.na(advantage_cents_per_mile),
+    !is.na(ev_pct)
+  ) %>%
+  ggplot(aes(x = advantage_cents_per_mile, y = ev_pct)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    title = "EV Cost Advantage vs EV Share by State",
+    subtitle = "Latest Available Month",
+    x = "EV Cost Advantage (Cents per Mile: Gas − EV)",
+    y = "EV Share of Total Vehicles (%)"
+  ) +
+  theme_minimal()
+advantage_scatter
+```
+
+The plot showcases the relationship between EV cost advantage and EV share for the most recent month. This figure is a more direct measure of affordability than the previous comparison of average retail gas cost. The fitted trend line shows a negative association between EV cost advantage and EV share, suggesting that states where they are saving more per mile from EV usage do not necessarily have higher EV adoption. It can be further noted that cost differences alone are not sufficient enough to explain differences in EV adoption across the states.
