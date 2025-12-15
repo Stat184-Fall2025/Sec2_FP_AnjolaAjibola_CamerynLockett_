@@ -166,7 +166,7 @@ ev_us_month <- ev_state_month %>%
 
 ```
 
-## Visualization for EV Adoption Dataset
+## Figure 1. U.S. EV Share Over Time (2017-2025)
 
 ```{r us_evPlot, fig.cap="Figure 1. U.S. EV Share Over Time (2017–2025).", fig.alt="Line graph of U.S. EV share (2017-2025), showing an increasing trend.", echo=FALSE}
 # Plot 1: U.S. EV% over time
@@ -179,9 +179,11 @@ p1_us <- ggplot(ev_us_month, aes(date, ev_pct)) +
   )
 p1_us
 ```
+
 The line plot shows that the U.S. electric vehicle share increases steadily from 2017 to 2025. At the start of the dataset, January 31, 2017, EVs made up about 0.368% of total vehicles, and by the most recent month, October 31, 2025, EV share rose to approximately 4.38%, with an overall increase of about 4.01 across the dataset period. We see gradual growth throughout 2017-2020, but the curve becomes drastically steeper starting around 2022. One limitation from the given dataset is that it does not include data for Vermont and West Virginia, so the exact percentages reflect only the given states included in the source; however, the overall upward trend in EVs is clear.
 
-## Top 10 States in the latest month
+## Table: Top 10 States in the latest month
+
 ```{r, echo=FALSE}
 # Latest month + ranking (RQ2)
 latest_date <- max(ev_state_month$date, na.rm = TRUE)
@@ -199,9 +201,11 @@ top10_latest <- pool_latest %>%
 
 top10_latest
 ```
+
 This table displays the top 10 states with highest EV share in the most recent month. In that month, the states with the highest EV share are New Jersey (8.45%), Massachusetts (6.79%), Missouri (5.88%), Kansas (5.84%), New York (5.52%), Illinois (4.82%), Washington (4.38%), Florida (4.34%), District of Columbia (4.05%), and Maryland (3.98%). Something to note within the data is that total vehicle counts vary drastically across states. For example Washington has a much greater total than most other states shown. This can lead to much smaller vehicle totals having a higher EV percentage.
 
-## Top 10 states by EV% increase over time
+## Table: Top 10 states by EV% increase over time
+
 ```{r us_ev_top10Plot, fig.cap="Figure 2. Top Ten U.S. State's EV Share Over Time (2017–2025).", fig.alt="Line graph showing EV share over time by state, 2017-2025.", echo=FALSE}
 
 # Table: Top 10 states by EV% increase (first -> last)
@@ -254,6 +258,7 @@ ggplot(ev_growth_smoothed2 %>% filter(!is.na(ev_pct_ma3)),
     y = "EV % (3-month average)"
   )
 ```
+
 The plot and the table show the top-10 fastest-growth states in EV share from 2017-2025. The plot utilizes a 3-month moving average to smooth out short-term fluctuations. Overall there is a clear upward trend, with an increase seen in the majority around 2022. In this growth ranking, Michigan stands out with the largest increase, which matches the results in the table. The remaining states Pennsylvania, Indiana, Alabama, Kentucky, Massachusetts, Washington, New York, New Jersey, and Colorado also show a strong increase in EV share over time.
 
 ## Data Wrangling Code for Price Dataset
@@ -299,7 +304,8 @@ cost_match_check <- latest_ev_with_costs %>%
   )
 ```
 
-## Top 10 states by EV cost advantage (cents per mile)
+## Table: Top 10 states by EV cost advantage (cents per mile)
+
 ```{r, echo=FALSE}
 # Top 10 states by EV cost advantage (cents per mile)
 top10_advantage_cpm <- latest_ev_with_costs %>%
@@ -310,6 +316,8 @@ top10_advantage_cpm <- latest_ev_with_costs %>%
   slice_head(n = 10)
 top10_advantage_cpm
 ```
+
+## Figure 3. Cost per Mile by State
 
 ```{r costScatterPlot, fig.cap="Figure 3. Cost per Mile by State.", fig.alt="Scatter plot of cost per mile by state for gas vs electric vehicles, with jittered data points.", echo=FALSE}
 p_scatter <- latest_ev_with_costs %>%
@@ -324,6 +332,8 @@ p_scatter <- latest_ev_with_costs %>%
 
 p_scatter
 ```
+
+## Figure 4. Top 20 States by EV Cost Advantage
 
 ```{r cost_advantageBarGraph, fig.cap="Figure 4. Top 20 States by EV Cost Advantage.", fig.alt="Horizontal bar graph of the top 20 states by EV cost advantage in cents saved per mile.", echo=FALSE}
 p_cost_adv <- latest_ev_with_costs %>%
@@ -340,7 +350,10 @@ p_cost_adv <- latest_ev_with_costs %>%
   )
 p_cost_adv
 ```
-The table summarizes the states where EVs are cheapest relative to gas based on cost per mile. It shows the top states where EV charging is consistently lower than gas on a per-mile basis. Washington has the largest advantage with a gas cost of about $0.16 per mile while EV charging costs about $0.06 per mile with a saving of 10 cents per mile. The scatterplot shows the overall relationship across states between gas cost per mile and EV cost per mile. It shows EV is generally cheaper per mile than gas in most states. The bar chart shows the top 20 states ranked by EV cost advantage. These visuals together show that EV charging is cheaper per mile than gas in most states, however the amount of savings varies by state.
+
+The table summarizes the states where EVs are cheapest relative to gas based on cost per mile. It shows the top states where EV charging is consistently lower than gas on a per-mile basis. Washington has the largest advantage with a gas cost of about \$0.16 per mile while EV charging costs about \$0.06 per mile with a saving of 10 cents per mile. The scatterplot shows the overall relationship across states between gas cost per mile and EV cost per mile. It shows EV is generally cheaper per mile than gas in most states. The bar chart shows the top 20 states ranked by EV cost advantage. These visuals together show that EV charging is cheaper per mile than gas in most states, however the amount of savings varies by state.
+
+## Figure 5. Gasoline Cost vs EV Share by State
 
 ```{r gascost_EVsharePlot, fig.cap="Figure 5. Gasoline Cost vs EV Share by State.", fig.alt="Scatter plot showing the relationship between gas prices and EV share of total vehicles by state with a downward-sloping trend line.", echo=FALSE}
 
@@ -364,6 +377,8 @@ g_scatter
 
 The plot showcases the relationship between average retail gasoline prices and EV share by state for the most recent month. There is variability across states leading to no clear positive relationship between gasoline prices and EV adoption. The trend line indicates a weak, negative association implying that gasoline prices alone do not correspond to or cause higher EV shares.
 
+## Figure 6. EV Cost Advantage vs EV Share by State
+
 ```{r EVcostadvantage_EVsharePlot, fig.cap="Figure 6. EV Cost Advantage vs EV Share by State.", fig.alt="Scatter plot of EV cost advantage versus EV share by state with a negative trend line.", echo=FALSE}
 advantage_scatter <- latest_ev_with_costs %>%
   filter(
@@ -384,3 +399,396 @@ advantage_scatter
 ```
 
 The plot showcases the relationship between EV cost advantage and EV share for the most recent month. This figure is a more direct measure of affordability than the previous comparison of average retail gas cost. The fitted trend line shows a negative association between EV cost advantage and EV share, suggesting that states where they are saving more per mile from EV usage do not necessarily have higher EV adoption. It can be further noted that cost differences alone are not sufficient enough to explain differences in EV adoption across the states.
+
+# Code Appendix
+
+\`\`\`{r codeAppendix, echo=FALSE, eval=FALSE} \# ========================================================
+
+## Data Wrangling Code for EV Adoption Dataset
+
+#Clean EV adoption data (county x month) ------------------------------
+
+ev \<- ev_raw %\>%
+
+clean_names() %\>%
+
+mutate(
+
+date = as.Date( parse_date_time( date, orders = c("ymd", "mdy", "b d Y"))),
+
+state = str_trim(state),
+
+vehicle_primary_use = str_to_title(vehicle_primary_use) ) %\>%
+
+filter(
+
+!is.na(date),
+
+!is.na(state),
+
+state != "",
+
+total_vehicles \> 0,
+
+state %in% c(state.abb, "DC") ) \# keep only 50 states + DC
+
+#Note for write-up: VT and WV are not present in this dataset after import/cleaning so results include only states/regions available in the file.
+
+#Aggregate to State x Month ------------------------------------------
+
+ev_state_month \<- ev %\>%
+
+group_by(state, date) %\>%
+
+summarise(
+
+bev = sum(battery_electric_vehicles_be_vs, na.rm = TRUE),
+
+phev = sum(plug_in_hybrid_electric_vehicles_phe_vs, na.rm = TRUE),
+
+ev_total = sum(electric_vehicle_ev_total, na.rm = TRUE),
+
+non_ev_total = sum(non_electric_vehicle_total, na.rm = TRUE),
+
+total = sum(total_vehicles, na.rm = TRUE), .groups = "drop" ) %\>%
+
+mutate( ev_share = ev_total / total, ev_pct = 100 \* ev_share )
+
+latest_date \<- max(ev_state_month\$date, na.rm = TRUE)
+
+latest_all_states \<- ev_state_month %\>%
+
+filter(date == latest_date)
+
+latest_state_rank \<- latest_all_states %\>%
+
+mutate(latest_rank = dense_rank(desc(ev_pct)))
+
+#Aggregate to U.S. x Month -------------------------------------------
+
+ev_us_month \<- ev_state_month %\>%
+
+group_by(date) %\>%
+
+summarise(
+
+ev_total = sum(ev_total, na.rm = TRUE),
+
+total = sum(total, na.rm = TRUE),
+
+ev_pct = 100 \* ev_total / total, .groups = "drop" )
+
+## Figure 1. U.S. EV Share Over Time (2017–2025)
+
+p1_us \<- ggplot(
+
+ev_us_month,
+
+aes(date, ev_pct))+
+
+geom_line() +
+
+labs(
+
+title = "U.S. EV Share Over Time (2017–2025)",
+
+x = NULL,
+
+y = "EV % of total vehicles" )
+
+p1_us
+
+## Table: Top 10 States in the latest month
+
+#Latest month + ranking (RQ2)
+
+latest_date \<- max(ev_state_month\$date, na.rm = TRUE)
+
+#States with the biggest totals in the latest month
+
+pool_latest \<- ev_state_month %\>%
+
+filter(date == latest_date) %\>%
+
+arrange(desc(total)) %\>%
+
+slice_head(n = 25)
+
+top10_latest \<- pool_latest %\>%
+
+arrange(desc(ev_pct)) %\>%
+
+mutate(latest_rank = row_number()) %\>%
+
+slice_head(n = 10)
+
+top10_latest
+
+## Table: Top 10 states by EV% increase (first -\> last)
+
+states_full \<- ev_state_month %\>%
+
+count(state, name = "months_present") %\>%
+
+filter(months_present == 106) %\>%
+
+pull(state)
+
+growth_tbl \<- ev_state_month %\>%
+
+filter(state %in% states_full) %\>%
+
+group_by(state) %\>%
+
+summarise(
+
+first_date = min(date),
+
+last_date = max(date),
+
+first_ev_pct = ev_pct\[which.min(date)\],
+
+last_ev_pct = ev_pct\[which.max(date)\],
+
+increase_pp = last_ev_pct - first_ev_pct, .groups = "drop" ) %\>%
+
+left_join( latest_state_rank %\>%
+
+select( state, latest_ev_pct = ev_pct, latest_rank), by = "state" ) %\>%
+
+arrange(desc(increase_pp))
+
+top10_growth \<- growth_tbl %\>%
+
+slice_head(n = 10)
+
+top10_growth
+
+## Figure 2. Top Ten U.S. State's EV Share Over Time (2017–2025)
+
+top_growth_states \<- top10_growth %\>%
+
+pull(state)
+
+cutoff \<- 125 \# you can try 1000, 5000, 10000
+
+ev_growth_smoothed2 \<- ev_state_month %\>%
+
+filter(state %in% top_growth_states, total \>= cutoff) %\>%
+
+arrange(state, date) %\>%
+
+group_by(state) %\>%
+
+mutate(ev_pct_ma3 = slider::slide_dbl(ev_pct, mean, .before = 2, .complete = TRUE)) %\>%
+
+ungroup()
+
+ggplot(
+
+ev_growth_smoothed2 %\>%
+
+filter(!is.na(ev_pct_ma3)),
+
+aes(date, ev_pct_ma3, color = state)) +
+
+geom_line() +
+
+labs(
+
+title = paste0( "EV Share Over Time: Fastest Growth States (3-mo avg, total ≥ ", cutoff, ")"),
+
+x = NULL,
+
+y = "EV % (3-month average)" )
+
+## Data Wrangling Code for Price Dataset
+
+price \<- price_raw %\>%
+
+clean_names() %\>%
+
+mutate(state = str_trim(state))
+
+#Keep necessary columns we need + compute “advantage”
+
+price_tidy \<- price %\>%
+
+transmute( state, gas_cost_per_mile = as.numeric(cost_per_mile_gas),
+
+ev_cost_per_mile = as.numeric(cost_per_mile_ev),
+
+gas_fuel_equiv_cost = as.numeric(average_retail_gas_cost),
+
+ev_fuel_equiv_cost = as.numeric(gasoline_equivalent),
+
+ev_discount_pct = as.numeric(ev_discount_10) ) %\>%
+
+mutate( advantage_cents_per_mile = 100 \* (gas_cost_per_mile - ev_cost_per_mile),
+
+advantage_pct = 100 \* (gas_cost_per_mile - ev_cost_per_mile) / gas_cost_per_mile,
+
+fuelup_savings_dollars = gas_fuel_equiv_cost - ev_fuel_equiv_cost )
+
+#Latest month from EV dataset (for context)
+
+latest_date \<- max( ev_state_month\$date, na.rm = TRUE)
+
+latest_ev \<- ev_state_month %\>%
+
+filter( date == latest_date) %\>%
+
+select(state, date, ev_pct)
+
+#Join EV adoption snapshot with fueling cost snapshot
+
+latest_ev_with_costs \<- latest_ev %\>%
+
+left_join(price_tidy, by = "state")
+
+#Quick data check (how many states matched?)
+
+cost_match_check \<- latest_ev_with_costs %\>%
+
+summarise( total_states_latest = n_distinct(state),
+
+states_with_costs = sum(!is.na(gas_cost_per_mile) & !is.na(ev_cost_per_mile)),
+
+missing_cost_states = paste( state\[is.na(gas_cost_per_mile) \| is.na(ev_cost_per_mile)\],
+
+collapse = ", ") )
+
+## Table: Top 10 states by EV cost advantage (cents per mile)
+
+top10_advantage_cpm \<- latest_ev_with_costs %\>%
+
+filter(!is.na(advantage_cents_per_mile)) %\>%
+
+arrange(desc(advantage_cents_per_mile)) %\>%
+
+select(state,
+
+ev_pct,
+
+gas_cost_per_mile,
+
+ev_cost_per_mile,
+
+advantage_cents_per_mile,
+
+advantage_pct) %\>%
+
+slice_head(n = 10)
+
+top10_advantage_cpm
+
+## Figure 3. Cost per Mile by State
+
+p_scatter \<- latest_ev_with_costs %\>%
+
+filter(!is.na(gas_cost_per_mile),
+
+!is.na(ev_cost_per_mile)) %\>%
+
+ggplot(
+
+aes(gas_cost_per_mile, ev_cost_per_mile)) +
+
+geom_jitter(width = 0.002, height = 0.002, alpha = 0.7) +
+
+labs(
+
+title = "Cost per Mile by State: Gas vs EV (jittered)",
+
+x = "Gas cost per mile ($)",
+y = "EV cost per mile ($)" )
+
+p_scatter
+
+## Figure 4. Top 20 States by EV Cost Advantage
+
+p_cost_adv \<- latest_ev_with_costs %\>%
+
+filter(!is.na(advantage_cents_per_mile)) %\>%
+
+arrange(desc(advantage_cents_per_mile)) %\>%
+
+slice_head(n = 20) %\>%
+
+ggplot(
+
+aes(reorder(state,
+
+advantage_cents_per_mile),
+
+advantage_cents_per_mile)) +
+
+geom_col() +
+
+coord_flip() +
+
+labs(
+
+title = "Top 20 States by EV Cost Advantage",
+
+x = NULL,
+
+y = "Cents saved per mile (Gas − EV)" )
+
+p_cost_adv
+
+## Figure 5. Gasoline Cost vs EV Share by State
+
+g_scatter \<- latest_ev_with_costs %\>%
+
+filter( !is.na(gas_fuel_equiv_cost), !is.na(ev_pct) ) %\>%
+
+ggplot(aes(x = gas_fuel_equiv_cost, y = ev_pct)) +
+
+geom_point(alpha = 0.7) +
+
+geom_smooth(method = "lm", se = FALSE) +
+
+labs(
+
+title = "Gasoline Cost vs EV Share by State",
+
+subtitle = "Latest Available Month",
+
+x = "Average Retail Gas Price (\$ per gallon)",
+
+y = "EV Share of Total Vehicles (%)" ) +
+
+theme_minimal()
+
+g_scatter
+
+## Figure 6. EV Cost Advantage vs EV Share by State
+
+advantage_scatter \<- latest_ev_with_costs %\>%
+
+filter(
+
+!is.na(advantage_cents_per_mile),
+
+!is.na(ev_pct) ) %\>%
+
+ggplot(aes(x = advantage_cents_per_mile, y = ev_pct))
+
+\+ geom_point(alpha = 0.7) +
+
+geom_smooth(method = "lm", se = FALSE) +
+
+labs(
+
+title = "EV Cost Advantage vs EV Share by State",
+
+subtitle = "Latest Available Month",
+
+x = "EV Cost Advantage (Cents per Mile: Gas − EV)",
+
+y = "EV Share of Total Vehicles (%)" ) +
+
+theme_minimal()
+
+advantage_scatter
