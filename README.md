@@ -24,7 +24,21 @@ Provide some information about what you intend to doe with the project. You can 
 
 ## Repo Structure
 
-Use this section to explain the structure of your repo. This should help visitors quickly figure out where they should look to find certain elements. Further, you can use this space to highlight and briefly explain important/key files in the repo.
+## Repo Structure
+
+Here's an overview of key files in this repository:
+
+- **Final Project.qmd**  
+  The main Quarto file containing the full analysis for the project. This file includes the research questions, data provenance, FAIR and CARE principles discussion, exploratory data analysis, tables, figures, and narrative explanations. The final PDF report is rendered from this file.
+
+- **Final Project.pdf**  
+  The completed project report rendered in PDF format from the Quarto file and submitted for the final project.
+
+- **README.md**  
+  This file provides a brief overview of the project, including its purpose, key insights, data sources, authors, and guidance for navigating the repository.
+
+- **Data/**  
+  Contains all datasets used in this project, including the raw EV adoption data and EV vs. gasoline fueling cost data. These files serve as the foundation for all analyses and visualizations in the project.
 
 
 ## Authors
