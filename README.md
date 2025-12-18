@@ -9,14 +9,19 @@ The goal of this project is to study the growth of electric vehicles in the U.S.
 ## Data Sources and Acknowledgements
 This project uses two primary data sources:
 
-Electric Vehicle Population Size History by County: https://catalog.data.gov/dataset/electric-vehicle-population-size-history-by-county
-Source: Data.gov
-Collected by: Washington State Department of Licensing (DOL)
-Purpose: Tracks monthly vehicle registrations (EV and non-EV) by county and state, allowing analysis of EV share and growth over time 
+- Electric Vehicle Population Size History by County: https://catalog.data.gov/dataset/electric-vehicle-population-size-history-by-county
 
-EV Charging Equivalent vs. Gasoline Price by State (Q4 2024): https://docs.google.com/spreadsheets/d/1Z7Dl45Ma6HEeafiPcw_F1yRD3S2L32bOHGSyJ3mdZ1M/edit?gid=0#gid=0
-Source: Stable Auto Corporation
-Purpose: Provides state level comparisons of EV charging costs and gasoline costs, including cost-per-mile estimates and EV fuel savings 
+  Source: Data.gov
+
+  Collected by: Washington State Department of Licensing (DOL)
+
+  Purpose: Tracks monthly vehicle registrations (EV and non-EV) by county and state, allowing analysis of EV share and growth over time 
+
+- EV Charging Equivalent vs. Gasoline Price by State (Q4 2024): https://docs.google.com/spreadsheets/d/1Z7Dl45Ma6HEeafiPcw_F1yRD3S2L32bOHGSyJ3mdZ1M/edit?gid=0#gid=0
+
+  Source: Stable Auto Corporation
+
+  Purpose: Provides state level comparisons of EV charging costs and gasoline costs, including cost-per-mile estimates and EV fuel savings 
 
 ## Repo Structure
 
@@ -36,5 +41,9 @@ Here's an overview of key files in this repository:
 
 
 ## Authors
+
 Anjola Ajibola and Cameryn Lockett
-For questions or collaboration, feel free to reach out via GitHub.
+
+For questions or collaboration, feel free to reach out via GitHub. 
+
+Usernames: Anjola240 and celockett.
