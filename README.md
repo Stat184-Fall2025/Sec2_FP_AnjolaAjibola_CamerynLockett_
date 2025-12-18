@@ -18,12 +18,6 @@ EV Charging Equivalent vs. Gasoline Price by State (Q4 2024): https://docs.googl
 Source: Stable Auto Corporation
 Purpose: Provides state level comparisons of EV charging costs and gasoline costs, including cost-per-mile estimates and EV fuel savings 
 
-## Current Plan
-
-Provide some information about what you intend to doe with the project. You can additionally refer the visitor to your detailed plan document.
-
-## Repo Structure
-
 ## Repo Structure
 
 Here's an overview of key files in this repository:
